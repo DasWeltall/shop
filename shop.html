@@ -80,9 +80,9 @@
     
     <div class="product">
         <img src="https://source.unsplash.com/random/300x200" alt="Produkt 1">
-        <h2>Produkt 1</h2>
-        <p>Beschreibung des Produkts 1.</p>
-        <button class="add-to-cart" onclick="addToCart('Produkt 1')">In den Warenkorb</button>
+        <h2>Malpad</h2></h2>
+        <p>Blätter sparen! Nur 4,59€</p>
+        <button class="add-to-cart" onclick="addToCart('Malpad')">In den Warenkorb</button>
     </div>
 
     <div class="product">
@@ -102,9 +102,15 @@
     </footer>
 
     <script>
+        
+            // Hier könntest du 
+
         function addToCart(productName) {
-            // Hier könntest du den Produktname zum Warenkorb hinzufügen, z.B. in einem Cookie oder localStorage
-            alert(productName + " wurde zum Warenkorb hinzugefügt!");
+            // Produkte im Warenkorb speichern
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push(productName);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            alert(productName + " wurde zum Warenkorb hinzugefügt!");            
         }
     </script>
 </body>

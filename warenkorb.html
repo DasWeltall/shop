@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warenkorb</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item img {
+            max-width: 100px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .remove-from-cart {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Warenkorb</h1>
+    </header>
+    
+    <div id="cart-items">
+        <!-- Produkte werden hier dynamisch hinzugefügt -->
+    </div>
+
+    <footer>
+        <button onclick="checkout()">Checkout</button>
+    </footer>
+
+    <script>
+        var cartProducts = []; // Array für die im Warenkorb befindlichen Produkte
+
+        function addToCart(productName) {
+            cartProducts.push(productName); // Produkt zum Warenkorb hinzufügen
+            renderCart(); // Warenkorb aktualisieren
+        }
+
+        function removeFromCart(productName) {
+            var index = cartProducts.indexOf(productName); // Index des Produkts im Array finden
+            if (index !== -1) {
+                cartProducts.splice(index, 1); // Produkt aus dem Array entfernen
+                renderCart(); // Warenkorb aktualisieren
+            }
+        }
+
+        function renderCart() {
+            var cartItemsDiv = document.getElementById("cart-items");
+            cartItemsDiv.innerHTML = ""; // Warenkorb leeren
+
+            cartProducts.forEach(function(productName) {
+                var cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+
+                var productImage = document.createElement("img");
+                productImage.src = "https://source.unsplash.com/random/100x100";
+                productImage.alt = productName;
+
+                var productInfo = document.createElement("span");
+                productInfo.textContent = productName;
+
+                var removeButton = document.createElement("button");
+                removeButton.textContent = "Aus dem Warenkorb entfernen";
+                removeButton.classList.add("remove-from-cart");
+                removeButton.onclick = function() {
+                    removeFromCart(productName);
+                };
+
+                cartItem.appendChild(productImage);
+                cartItem.appendChild(productInfo);
+                cartItem.appendChild(removeButton);
+
+                cartItemsDiv.appendChild(cartItem);
+            });
+        }
+
+        function checkout() {
+            alert("Bezahlvorgang wird gestartet...");
+            // Hier könntest du den Bezahlprozess implementieren, z.B. PayPal-Integration
+        }
+    </script>
+</body>
+</html>

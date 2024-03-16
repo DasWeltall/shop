@@ -57,7 +57,8 @@
     </header>
     
     <div id="cart-items">
-        <!-- Produkte werden hier dynamisch hinzugefügt -->
+        <div class="cart-item">Malpad</div>
+        <div class="cart-item">Produkt 2</div>
     </div>
 
     <footer>
@@ -65,55 +66,23 @@
     </footer>
 
     <script>
-        var cartProducts = []; // Array für die im Warenkorb befindlichen Produkte
+        // Funktion zum Abrufen des Warenkorbinhalts aus dem Local Storage
+        function loadCartItems() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-        function addToCart(productName) {
-            cartProducts.push(productName); // Produkt zum Warenkorb hinzufügen
-            renderCart(); // Warenkorb aktualisieren
-        }
-
-        function removeFromCart(productName) {
-            var index = cartProducts.indexOf(productName); // Index des Produkts im Array finden
-            if (index !== -1) {
-                cartProducts.splice(index, 1); // Produkt aus dem Array entfernen
-                renderCart(); // Warenkorb aktualisieren
-            }
-        }
-
-        function renderCart() {
-            var cartItemsDiv = document.getElementById("cart-items");
+            let cartItemsDiv = document.getElementById("cart-items");
             cartItemsDiv.innerHTML = ""; // Warenkorb leeren
 
-            cartProducts.forEach(function(productName) {
+            cartItems.forEach(function(productName) {
                 var cartItem = document.createElement("div");
                 cartItem.classList.add("cart-item");
-
-                var productImage = document.createElement("img");
-                productImage.src = "https://source.unsplash.com/random/100x100";
-                productImage.alt = productName;
-
-                var productInfo = document.createElement("span");
-                productInfo.textContent = productName;
-
-                var removeButton = document.createElement("button");
-                removeButton.textContent = "Aus dem Warenkorb entfernen";
-                removeButton.classList.add("remove-from-cart");
-                removeButton.onclick = function() {
-                    removeFromCart(productName);
-                };
-
-                cartItem.appendChild(productImage);
-                cartItem.appendChild(productInfo);
-                cartItem.appendChild(removeButton);
-
+                cartItem.textContent = productName;
                 cartItemsDiv.appendChild(cartItem);
             });
         }
 
-        function checkout() {
-            alert("Bezahlvorgang wird gestartet...");
-            // Hier könntest du den Bezahlprozess implementieren, z.B. PayPal-Integration
-        }
+        // Die Funktion aufrufen, um den Warenkorb beim Laden der Seite zu laden
+        loadCartItems();
     </script>
 </body>
 </html>

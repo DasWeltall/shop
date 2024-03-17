@@ -68,6 +68,9 @@
     </style>
 </head>
 <body>
+<script>
+    var preis = 499;
+</sript>
     <header>
         <h1>Mein Online-Shop</h1>
         <nav>
@@ -83,15 +86,16 @@
     <div class="product">
         <img src="https://source.unsplash.com/random/300x200" alt="Produkt 1">
         <h2>Malpad</h2></h2>
-        <p>Blätter sparen! Nur 4,59€</p>
-        <button class="add-to-cart" onclick="addToCart('Malpad')">In den Warenkorb</button>
+        <p>Blätter sparen!</p>
+        <p>4,99€</p>
+        <button class="add-to-cart" onclick="addToCart('Malpad' + preis)">In den Warenkorb</button>
     </div>
 
     <div class="product">
         <img src="https://source.unsplash.com/random/300x200" alt="Produkt 2">
         <h2>Produkt 2</h2>
         <p>Beschreibung des Produkts 2.</p>
-        <button class="add-to-cart" onclick="addToCart('Produkt 2')">In den Warenkorb</button>
+        <button class="add-to-cart" onclick="addToCart('Produkt 2' )">In den Warenkorb</button>
     </div>
     <br>
 

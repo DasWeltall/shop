@@ -104,7 +104,14 @@
          </nav>
     </footer>
 
-<script scr="pay.js"></script> 
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    paypal.HostedButtons({
+      hostedButtonId: "JQVL9SKLA5TYC"
+    })
+    .render("#paypal-container-JQVL9SKLA5TYC")
+  })
+</script>
 </body>
 </html>
 

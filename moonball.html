@@ -25,6 +25,24 @@
   transform: translateX(-50%);
   font-size: 20px;
         }
+        .carousel-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 100%;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
     </style>
 </head>
 <body>
@@ -39,7 +57,14 @@
          </nav>
     </header>
     <h4 style="color: red;">Bitte nicht bezahlen dieser Onlineshop funktioniert noch nicht bitte haben sie etwas gedult!</h4>
-    <img src="https://source.unsplash.com/random/300x200" alt="bild">
+    <div class="carousel-container">
+      <div class="carousel">
+        <div class="slide"><img src="bild1.jpg" alt="Bild 1"></div>
+        <div class="slide"><img src="bild2.jpg" alt="Bild 2"></div>
+        <div class="slide"><img src="bild3.jpg" alt="Bild 3"></div>
+        <!-- Weitere Bilder hier einfügen -->
+      </div>
+    </div>
     <hr>
     <h2>Bitte Lieferadresse ausfüllen!</h2>
     <a href="https://form.jotform.com/240794611514051">
@@ -69,6 +94,80 @@
     })
     .render("#paypal-container-JQVL9SKLA5TYC")
   })
+</script>
+<script>
+    const carousel = document.querySelector('.carousel');
+let isDragging = false;
+let startPosition = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+
+carousel.addEventListener('mousedown', startDragging);
+carousel.addEventListener('touchstart', startDragging);
+carousel.addEventListener('mouseup', endDragging);
+carousel.addEventListener('touchend', endDragging);
+carousel.addEventListener('mousemove', drag);
+carousel.addEventListener('touchmove', drag);
+
+function startDragging(event) {
+    if (event.type === 'touchstart') {
+        startPosition = event.touches[0].clientX;
+    } else {
+        startPosition = event.clientX;
+    }
+
+    isDragging = true;
+    requestAnimationFrame(animation);
+}
+
+function endDragging() {
+    isDragging = false;
+    cancelAnimationFrame(animation);
+
+    const threshold = 0.2;
+    if (Math.abs(currentTranslate - prevTranslate) / window.innerWidth > threshold) {
+        if (currentTranslate < prevTranslate) {
+            showNextSlide();
+        } else {
+            showPrevSlide();
+        }
+    } else {
+        carousel.style.transform = `translateX(-${currentTranslate}px)`;
+    }
+}
+
+function drag(event) {
+    if (isDragging) {
+        const currentPosition = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+        const diff = currentPosition - startPosition;
+        currentTranslate = prevTranslate + diff;
+    }
+}
+
+function animation() {
+    if (isDragging) {
+        updateCarouselPosition();
+        requestAnimationFrame(animation);
+    }
+}
+
+function updateCarouselPosition() {
+    carousel.style.transform = `translateX(-${currentTranslate}px)`;
+}
+
+function showNextSlide() {
+    const slideWidth = carousel.querySelector('.slide').clientWidth;
+    prevTranslate = currentTranslate;
+    currentTranslate -= slideWidth;
+    carousel.style.transform = `translateX(-${currentTranslate}px)`;
+}
+
+function showPrevSlide() {
+    const slideWidth = carousel.querySelector('.slide').clientWidth;
+    prevTranslate = currentTranslate;
+    currentTranslate += slideWidth;
+    carousel.style.transform = `translateX(-${currentTranslate}px)`;
+}
 </script>
 </body>
 </html>

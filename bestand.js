@@ -1,25 +1,25 @@
 
 // Annahme: Der aktuelle Bestand ist in Variablen gespeichert
 let pro1Stock = 5;
-let pro2sStock = 3;
-let pro3sStock = 7;
-let pro4sStock = 11;
-let pro5sStock = 1;
-let pro6sStock = 1;
-let pro7sStock = 1;
-let pro8sStock = 1;
+let pro2Stock = 3;
+let pro3Stock = 7;
+let pro4Stock = 11;
+let pro5Stock = 1;
+let pro6Stock = 1;
+let pro7Stock = 1;
+let pro8Stock = 1;
 
 
 // Funktion, um den Bestand anzuzeigen
 function displayStock() {
-    const pro1 = document.getElementById('pro1Stock');
-    const pro2 = document.getElementById('pro2Stock');
-    const pro3 = document.getElementById('pro3Stock');
-    const pro4 = document.getElementById('pro4Stock');
-    const pro5 = document.getElementById('pro5Stock');
-    const pro6 = document.getElementById('pro6Stock');
-    const pro7 = document.getElementById('pro7Stock');
-    const pro8 = document.getElementById('pro8Stock');
+    const pro1 = document.getElementById('pro1');
+    const pro2 = document.getElementById('pro2');
+    const pro3 = document.getElementById('pro3');
+    const pro4 = document.getElementById('pro4');
+    const pro5 = document.getElementById('pro5');
+    const pro6 = document.getElementById('pro');
+    const pro7 = document.getElementById('pro7');
+    const pro8 = document.getElementById('pro8');
  
     
 

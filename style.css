@@ -93,3 +93,7 @@
 .butto:hover {
   background-color: #5681fa;
 }
+
+#gif {
+            max-width: 50%;
+}

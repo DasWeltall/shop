@@ -97,3 +97,7 @@
 #gif {
             max-width: 50%;
 }
+
+#container {
+        border: 2px;
+}
